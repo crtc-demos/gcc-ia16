@@ -66,6 +66,32 @@ mshort-jumps
 Target Mask(SHORT_JUMPS)
 -m(no-)short-jumps  Do (not - this is the default) use jump instructions which can only jump -128/+127 bytes.
 
-mseparate-code-segment
-Target Mask(SEPARATE_CSEG)
--m(no-)separate-code-segment  Do (not - this is the default) use a separate code segment.
+;; -mmodel= model
+TargetSave
+enum mmodel x_ia16_mmodel
+
+mmmodel=
+Target RejectNegative Joined Enum(mmodel) Var(ia16_mmodel) Init(MM_TINY)
+Use given memory model.
+
+Enum
+Name(mmodel) Type(enum mmodel)
+Known memory models (for use with the -mmmodel= option):
+
+EnumValue
+Enum(mmodel) String(tiny) Value(MM_TINY)
+
+EnumValue
+Enum(mmodel) String(small) Value(MM_SMALL)
+
+EnumValue
+Enum(mmodel) String(compact) Value(MM_COMPACT)
+
+EnumValue
+Enum(mmodel) String(medium) Value(MM_MEDIUM)
+
+EnumValue
+Enum(mmodel) String(large) Value(MM_LARGE)
+
+EnumValue
+Enum(mmodel) String(huge) Value(MM_HUGE)

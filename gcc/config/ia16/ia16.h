@@ -601,8 +601,18 @@ enum reg_class {	/*	 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0 */
 
  * Parameters for Precompiled Header Validity Checking
 
- * C++ ABI parameters
- *
+ * C++ ABI parameters */
+
+/* Adding support for named address spaces */
+
+#define ADDR_SPACE_NEAR	1
+#define ADDR_SPACE_FAR	2
+
+#define LARGE_MODEL (ia16_mmodel == MM_LARGE || ia16_mmodel == MM_HUGE)
+#define POINTERS_FAR (ia16_mmodel == MM_COMPACT || LARGE_MODEL)
+#define FUNCTIONS_FAR (ia16_mmodel == MM_MEDIUM || LARGE_MODEL)
+
+/*
  * Miscellaneous Parameters
  *
  * GAS provides the necessary workarounds for long conditional jumps to work.

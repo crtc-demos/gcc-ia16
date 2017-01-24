@@ -25,7 +25,7 @@
 
 #define LIB_SPEC        \
   "-lc -lelks -lnosys "	\
-  "%{mseparate-code-segment:-T elks-separate.ld%s;:-T elks-combined.ld%s}"
+  "%{mmmodel=small:-T elks-separate.ld%s;:-T elks-combined.ld%s}"
 
 #define STARTFILE_SPEC  \
   "crt0%O%s"

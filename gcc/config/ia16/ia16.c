@@ -1777,7 +1777,7 @@ ia16_parse_address_strict (rtx x, rtx *p_rb, rtx *p_ri, rtx *p_c)
 		return (0 == 1);
 
 	/* Check register class for base.  */
-	if (rb && !ri && !REG_MODE_OK_FOR_BASE_P (rb, mode))
+	if (rb && !ri && !REGNO_MODE_OK_FOR_BASE_P (REGNO (rb), mode))
 		return (0 == 1);
 
 	if (p_rb)
@@ -1858,9 +1858,9 @@ ia16_trampoline_init (rtx tr, tree fn, rtx sc)
   unsigned char mov_opcode = 0xb8;
   unsigned char regno = STATIC_CHAIN_REGNUM;
 
-  if (TARGET_SEPARATE_CSEG)
+  if (!POINTERS_FAR && ia16_mmodel != MM_TINY)
     {
-      sorry ("Trampolines are disabled by -mseparate-code-segment.");
+      sorry ("Trampolines are not possible in the small and medium memory models.");
       abort ();
     }
 
@@ -1960,6 +1960,91 @@ ia16_parse_address (rtx e, rtx *p_r1, rtx *p_r2, rtx *p_c)
   return false;
 }
 
+/* Adding support for named address spaces */
+
+/* Return the appropriate mode for a named address pointer.  */
+#undef TARGET_ADDR_SPACE_POINTER_MODE
+#define TARGET_ADDR_SPACE_POINTER_MODE ia16_addr_space_pointer_mode
+#undef TARGET_ADDR_SPACE_ADDRESS_MODE
+#define TARGET_ADDR_SPACE_ADDRESS_MODE ia16_addr_space_pointer_mode
+static machine_mode
+ia16_addr_space_pointer_mode (addr_space_t addrspace)
+{
+  switch (addrspace)
+    {
+    case ADDR_SPACE_GENERIC:
+      return POINTERS_FAR ? SImode : HImode;
+    case ADDR_SPACE_NEAR:
+      return HImode;
+    case ADDR_SPACE_FAR:
+      return SImode;
+    default:
+      gcc_unreachable ();
+    }
+}
+
+/* Determine if one named address space is a subset of another.  */
+#undef TARGET_ADDR_SPACE_SUBSET_P
+#define TARGET_ADDR_SPACE_SUBSET_P ia16_addr_space_subset_p
+static bool
+ia16_addr_space_subset_p (addr_space_t subset, addr_space_t superset)
+{
+  addr_space_t generic = POINTERS_FAR ? ADDR_SPACE_FAR : ADDR_SPACE_NEAR;
+  if (subset == ADDR_SPACE_GENERIC)
+    subset = generic;
+  if (superset == ADDR_SPACE_GENERIC)
+    superset = generic;
+  return (subset == ADDR_SPACE_NEAR || superset == ADDR_SPACE_FAR);
+}
+
+#undef TARGET_ADDR_SPACE_LEGITIMATE_ADDRESS_P
+#define TARGET_ADDR_SPACE_LEGITIMATE_ADDRESS_P \
+  ia16_addr_space_legitimate_address_p
+static bool
+ia16_addr_space_legitimate_address_p (machine_mode mode, rtx x,
+                                      bool strict, addr_space_t as)
+{
+  rtx r1, r2;
+  if (CONSTANT_P (x))
+    return true;
+  if (!ia16_parse_address (x, &r1, &r2, NULL))
+    return false;
+  if (r1 == NULL_RTX)
+    return true;
+  int r1no = REGNO (r1);
+  bool r1ok = true;
+  if (strict)
+    {
+      r1ok = false;
+      if (r1no > LAST_HARD_REG && reg_renumber != 0)
+	{
+	  r1no = reg_renumber[r1no];
+	  if (r1no < 0 || r1no > LAST_HARD_REG)
+	    return false;
+	}
+    }
+  if (r2 == NULL_RTX)
+    return REGNO_MODE_OK_FOR_BASE_P (r1no, mode) || r1ok;
+  int r2no = REGNO (r2);
+  bool r2ok = true;
+  if (strict)
+    {
+      r2ok = false;
+      if (r2no > LAST_HARD_REG && reg_renumber != 0)
+	{
+	  r2no = reg_renumber[r2no];
+	  if (r2no < 0 || r2no > LAST_HARD_REG)
+	    return false;
+	}
+    }
+  if ((REGNO_OK_FOR_INDEX_P (r1no) || r1ok)
+      && (REGNO_MODE_OK_FOR_REG_BASE_P (r2no, mode) || r2ok))
+    return true;
+  return (REGNO_OK_FOR_INDEX_P (r2no) || r2ok)
+    && (REGNO_MODE_OK_FOR_REG_BASE_P (r1no, mode) || r1ok);
+}
+
+
 /* Miscellaneous Parameters */
 
 /* Only Intel i80186 and i80286 mask the shift/rotate counts.  */
@@ -1971,6 +2056,15 @@ static unsigned HOST_WIDE_INT
 ia16_shift_truncation_mask (enum machine_mode mode)
 {
   return (TARGET_SHIFT_MASKED && (mode == HImode || mode == QImode) ? 31 : 0);
+}
+
+#undef  REGISTER_TARGET_PRAGMAS
+#define REGISTER_TARGET_PRAGMAS	ia16_register_pragmas
+void
+ia16_register_pragmas (void)
+{
+  c_register_addr_space ("__near", default_near_pointers ? ADDR_SPACE_GENERIC : ADDR_SPACE_NEAR);
+  c_register_addr_space ("__far", default_near_pointers ? ADDR_SPACE_FAR : ADDR_SPACE_GENERIC);
 }
 
 /* The Global targetm Variable */
