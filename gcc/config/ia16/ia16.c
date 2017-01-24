@@ -23,7 +23,6 @@
  *
  * FIXME: Docs say config.h includes tm.h, but it doesn't.
  */
-#define REG_OK_STRICT
 #include "config.h"
 #include "system.h"
 #include "coretypes.h"
@@ -152,18 +151,18 @@ ia16_secondary_reload (bool in_p, rtx x, reg_class_t reload_class,
 
 /* Return true if SUBST can't safely replace its equivalent during RA.  */
 static bool
-ia16_cannot_substitute_mem_equiv_p(rtx subst)
+ia16_cannot_substitute_mem_equiv_p (rtx subst)
 {
-  if (!MEM_P (subst))
+  if (!MEM_P  (subst))
     return false;
   rtx e = XEXP (subst, 0);
-  if (GET_CODE(e) != PLUS)
+  if (GET_CODE (e) != PLUS)
     return false;
   rtx x = XEXP (e, 0);
-  if (GET_CODE(x) == PLUS)
+  if (GET_CODE (x) == PLUS)
     return true;
   rtx y = XEXP (e, 1);
-  return GET_CODE(x) == REG && GET_CODE(y) == REG;
+  return GET_CODE (x) == REG && GET_CODE (y) == REG;
 }
 
 #undef TARGET_FRAME_POINTER_REQUIRED
@@ -332,6 +331,53 @@ ia16_return_in_memory (const_tree type, const_tree fntype ATTRIBUTE_UNUSED)
    return (TYPE_MODE (type) == BLKmode || int_size_in_bytes (type) > 4);
 }
 
+/* Addressing Modes */
+
+#undef TARGET_LEGITIMATE_ADDRESS_P
+#define TARGET_LEGITIMATE_ADDRESS_P ia16_legitimate_address_p
+static bool
+ia16_legitimate_address_p (machine_mode mode, rtx x, bool strict)
+{
+  rtx r1, r2;
+  if (CONSTANT_P (x))
+    return true;
+  if (!ia16_parse_address (x, &r1, &r2, NULL))
+    return false;
+  if (r1 == NULL_RTX)
+    return true;
+  int r1no = REGNO (r1);
+  bool r1ok = true;
+  if (strict)
+    {
+      r1ok = false;
+      if (r1no > LAST_HARD_REG && reg_renumber != 0)
+        {
+          r1no = reg_renumber[r1no];
+          if (r1no < 0 || r1no > LAST_HARD_REG)
+            return false;
+        }
+    }
+  if (r2 == NULL_RTX)
+    return REGNO_MODE_OK_FOR_BASE_P (r1no, mode) || r1ok;
+  int r2no = REGNO (r2);
+  bool r2ok = true;
+  if (strict)
+    {
+      r2ok = false;
+      if (r2no > LAST_HARD_REG && reg_renumber != 0)
+        {
+          r2no = reg_renumber[r2no];
+          if (r2no < 0 || r2no > LAST_HARD_REG)
+            return false;
+        }
+    }
+  if ((REGNO_OK_FOR_INDEX_P (r1no) || r1ok)
+      && (REGNO_MODE_OK_FOR_REG_BASE_P (r2no, mode) || r2ok))
+    return true;
+  return (REGNO_OK_FOR_INDEX_P (r2no) || r2ok)
+    && (REGNO_MODE_OK_FOR_REG_BASE_P (r1no, mode) || r1ok);
+}
+
 /* Condition Code Status */
 /* Return the "smallest" usable comparison mode for the given comparison
  * operator OP and operands X and Y.  BRANCH is true if we are optimizing for
@@ -394,6 +440,20 @@ ia16_gen_compare_reg (enum rtx_code op, rtx x, rtx y, bool branch)
 
   emit_insn (gen_rtx_SET (cc_reg, gen_rtx_COMPARE (mode, x, y)));
   return cc_reg;
+}
+
+#undef  TARGET_CANONICALIZE_COMPARISON
+#define TARGET_CANONICALIZE_COMPARISON ia16_canonicalize_comparison
+
+static void
+ia16_canonicalize_comparison (int *code, rtx *op0, rtx *op1,
+			      bool op0_preserve_value ATTRIBUTE_UNUSED)
+{
+  if ((*code == EQ || *code == NE) && GET_CODE (*op1) == NEG)
+    {
+      *op0 = gen_rtx_PLUS (GET_MODE (*op0), *op0, XEXP (*op1, 0));
+      *op1 = const0_rtx;
+    }
 }
 
 #undef  TARGET_FIXED_CONDITION_CODE_REGS
