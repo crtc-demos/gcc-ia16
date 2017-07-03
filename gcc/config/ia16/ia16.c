@@ -75,24 +75,24 @@
  */
 unsigned char ia16_hard_regno_nregs[17][FIRST_PSEUDO_REGISTER] =
 {
-/* size     cl  ch  al  ah  dl  dh  bl  bh  si  di  bp  es  sp  cc, ap */
-/*  0 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
-/*  1 */  {  1,  1,  1,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0 },
-/*  2 */  {  2,  0,  2,  0,  2,  0,  2,  0,  1,  1,  1,  1,  1,  0,  1 },
-/*  3 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
-/*  4 */  {  4,  0,  4,  0,  4,  0,  3,  0,  2,  2,  2,  2,  0,  1,  0 },
-/*  5 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
-/*  6 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
-/*  7 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
-/*  8 */  {  8,  0,  7,  0,  0,  0,  0,  0,  4,  4,  0,  0,  0,  0,  0 },
-/*  9 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
-/* 10 */  {  9,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
-/* 11 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
-/* 12 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
-/* 13 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
-/* 14 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
-/* 15 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
-/* 16 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /* size     cl  ch  al  ah  dl  dh  bl  bh  si  di  bp  es  ds  sp  cc, ap */
+  /*  0 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /*  1 */  {  1,  1,  1,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /*  2 */  {  2,  0,  2,  0,  2,  0,  2,  0,  1,  1,  1,  1,  1,  1,  0,  1 },
+  /*  3 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /*  4 */  {  4,  0,  4,  0,  4,  0,  3,  0,  2,  2,  2,  2,  0,  0,  1,  0 },
+  /*  5 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /*  6 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /*  7 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /*  8 */  {  8,  0,  7,  0,  0,  0,  0,  0,  4,  4,  0,  0,  0,  0,  0,  0 },
+  /*  9 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /* 10 */  {  9,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /* 11 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /* 12 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /* 13 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /* 14 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /* 15 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+  /* 16 */  {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
 };
 
 /* Register Classes.  */
@@ -109,9 +109,10 @@ enum reg_class const ia16_regno_class[FIRST_PSEUDO_REGISTER] = {
 	/*  9 di */ DI_REGS,
 	/* 10 bp */ BP_REGS,
 	/* 11 es */ SEGMENT_REGS,
-	/* 12 sp */ HI_REGS,
-	/* 13 cc */ ALL_REGS,
-	/* 14 ap */ ALL_REGS,
+	/* 12 ds */ SEGMENT_REGS,
+	/* 13 sp */ HI_REGS,
+	/* 14 cc */ ALL_REGS,
+	/* 15 ap */ ALL_REGS,
 };
 
 /* Processor target table, indexed by processor number */
@@ -332,51 +333,6 @@ ia16_return_in_memory (const_tree type, const_tree fntype ATTRIBUTE_UNUSED)
 }
 
 /* Addressing Modes */
-
-#undef TARGET_LEGITIMATE_ADDRESS_P
-#define TARGET_LEGITIMATE_ADDRESS_P ia16_legitimate_address_p
-static bool
-ia16_legitimate_address_p (machine_mode mode, rtx x, bool strict)
-{
-  rtx r1, r2;
-  if (CONSTANT_P (x))
-    return true;
-  if (!ia16_parse_address (x, &r1, &r2, NULL))
-    return false;
-  if (r1 == NULL_RTX)
-    return true;
-  int r1no = REGNO (r1);
-  bool r1ok = true;
-  if (strict)
-    {
-      r1ok = false;
-      if (r1no > LAST_HARD_REG && reg_renumber != 0)
-        {
-          r1no = reg_renumber[r1no];
-          if (r1no < 0 || r1no > LAST_HARD_REG)
-            return false;
-        }
-    }
-  if (r2 == NULL_RTX)
-    return REGNO_MODE_OK_FOR_BASE_P (r1no, mode) || r1ok;
-  int r2no = REGNO (r2);
-  bool r2ok = true;
-  if (strict)
-    {
-      r2ok = false;
-      if (r2no > LAST_HARD_REG && reg_renumber != 0)
-        {
-          r2no = reg_renumber[r2no];
-          if (r2no < 0 || r2no > LAST_HARD_REG)
-            return false;
-        }
-    }
-  if ((REGNO_OK_FOR_INDEX_P (r1no) || r1ok)
-      && (REGNO_MODE_OK_FOR_REG_BASE_P (r2no, mode) || r2ok))
-    return true;
-  return (REGNO_OK_FOR_INDEX_P (r2no) || r2ok)
-    && (REGNO_MODE_OK_FOR_REG_BASE_P (r1no, mode) || r1ok);
-}
 
 /* Condition Code Status */
 /* Return the "smallest" usable comparison mode for the given comparison
@@ -1717,11 +1673,11 @@ ia16_asm_file_start (void)
 #define TARGET_ASM_UNALIGNED_TI_OP	"\t.octa\t"
 
 static const char *reg_QInames[SI_REG] = {
-	"cl", "ch", "al", "ah", "dl", "dh", "bl", "bh"
+  "cl", "ch", "al", "ah", "dl", "dh", "bl", "bh"
 };
 
 static const char *reg_HInames[SP_REG+1] = {
-	"cx", 0, "ax", 0, "dx", 0, "bx", 0, "si", "di", "bp", "es", "sp"
+  "cx", 0, "ax", 0, "dx", 0, "bx", 0, "si", "di", "bp", "es", "ds", "sp"
 };
 
 /* E is known not to be null when this is called.  These non-standard codes are
@@ -1815,39 +1771,41 @@ ia16_print_operand (FILE *file, rtx e, int code)
  * This is a helper function for ia16_print_operand_address ().
  */
 static bool
-ia16_parse_address_strict (rtx x, rtx *p_rb, rtx *p_ri, rtx *p_c)
+ia16_parse_address_strict (rtx x, rtx *p_rb, rtx *p_ri, rtx *p_c, rtx *p_sr)
 {
-	rtx tmp;
-	rtx rb, ri, c;
-	enum machine_mode mode;
+  rtx tmp;
+  rtx rb, ri, c, sr;
+  enum machine_mode mode;
 
-	if (!ia16_parse_address (x, &rb, &ri, &c))
-		return (0 == 1);
-	mode = GET_MODE (x);
+  if (!ia16_parse_address (x, &rb, &ri, &c, &sr))
+    return false;
+  mode = GET_MODE (x);
 
-	/* Swap the registers if necessary.  */
-	if (rb && ri && INDEX_REG_P (rb) && BASE_REG_REG_P (ri))
-	  {
-		tmp = rb; rb = ri; ri = tmp;
-	  }
-	/* Check register classes for base + index.  */
-	if (rb && ri
-	    && (!INDEX_REG_P (ri)
-		|| !BASE_REG_REG_P (rb)))
-		return (0 == 1);
+  /* Swap the registers if necessary.  */
+  if (rb && ri && INDEX_REG_P (rb) && BASE_REG_REG_P (ri))
+    {
+      tmp = rb;
+      rb = ri;
+      ri = tmp;
+    }
+  /* Check register classes for base + index.  */
+  if (rb && ri && (!INDEX_REG_P (ri) || !BASE_REG_REG_P (rb)))
+    return false;
 
-	/* Check register class for base.  */
-	if (rb && !ri && !REGNO_MODE_OK_FOR_BASE_P (REGNO (rb), mode))
-		return (0 == 1);
+  /* Check register class for base.  */
+  if (rb && !ri && !REGNO_MODE_OK_FOR_BASE_P (REGNO (rb), mode))
+    return false;
 
-	if (p_rb)
-		*p_rb = rb;
-	if (p_ri)
-		*p_ri = ri;
-	if (p_c)
-		*p_c = c;
+  if (p_rb)
+    *p_rb = rb;
+  if (p_ri)
+    *p_ri = ri;
+  if (p_c)
+    *p_c = c;
+  if (p_sr)
+    *p_sr = sr;
 
-	return (0 == 0);
+  return true;
 }
 
 /* Possible asm operands and their address expressions:
@@ -1860,23 +1818,23 @@ ia16_parse_address_strict (rtx x, rtx *p_rb, rtx *p_ri, rtx *p_c)
 void
 ia16_print_operand_address (FILE *file, rtx e)
 {
-	rtx rb, ri, c;
+  rtx rb, ri, c, sr;
 
-	if (!ia16_parse_address_strict (e, &rb, &ri, &c)) {
-        	debug_rtx (e);
-        	output_operand_lossage ("Invalid IA16 address expression.");
-        	return;
-	}
-	if (c)
-		output_addr_const (file, c);
-	if (rb)
-		fprintf (file, "(%s%s",
-		         REGISTER_PREFIX, reg_HInames[REGNO (rb)]);
-	if (ri)
-		fprintf (file, ",%s%s",
-			 REGISTER_PREFIX, reg_HInames[REGNO (ri)]);
-	if (rb)
-		putc (')', file);
+  if (!ia16_parse_address_strict (e, &rb, &ri, &c, &sr)) {
+    debug_rtx (e);
+    output_operand_lossage ("Invalid IA16 address expression.");
+    return;
+  }
+  if (sr)
+    fprintf (file, "%s%s:", REGISTER_PREFIX, reg_HInames[REGNO (sr)];
+  if (c)
+    output_addr_const (file, c);
+  if (rb)
+    fprintf (file, "(%s%s", REGISTER_PREFIX, reg_HInames[REGNO (rb)]);
+  if (ri)
+    fprintf (file, ",%s%s", REGISTER_PREFIX, reg_HInames[REGNO (ri)]);
+  if (rb)
+    putc (')', file);
 }
 
 /* Helper function for gen_prologue().  Generates RTL to push REGNO, which
@@ -1958,65 +1916,84 @@ ia16_trampoline_init (rtx tr, tree fn, rtx sc)
 
 /* Subroutine of ia16_parse_address.  */
 bool
-ia16_parse_address_internal (rtx e, rtx *p_r1, rtx *p_r2, rtx *p_c)
+ia16_parse_address_internal (rtx e, rtx *p_r1, rtx *p_r2, rtx *p_sr, rtx *p_c,
+			     rtx *p_sr)
 {
-	rtx x, y;
-	rtx r1 = NULL, r2 = NULL, c = NULL;
+  rtx x, y;
+  rtx r1 = NULL, r2 = NULL, c = NULL, sr = NULL;
 
-	if (REG_P (e))
-		r1 = e;
-	else if (GET_CODE(e) == PLUS) {
-		x = XEXP (e, 0);
-		y = XEXP (e, 1);
-		if (GET_CODE (x) == PLUS) {
-			r1 = XEXP (x, 0);
-			r2 = XEXP (x, 1);
-			c  = y;
-		} else if (REG_P (y)) {
-			r1 = x;
-			r2 = y;
-		} else {
-			r1 = x;
-			c  = y;
+  if (REG_P (e))
+    r1 = e;
+  else
+    {
+      if (GET_CODE(e) == PLUS)
+	{
+	  x = XEXP (e, 0);
+	  y = XEXP (e, 1);
+	  if (GET_CODE (x) == PLUS)
+	    {
+	      r1 = XEXP (x, 0);
+	      r2 = XEXP (x, 1);
+	      c  = y;
+	    }
+	  else
+	    {
+	      if (REG_P (y))
+		{
+		  r1 = x;
+		  r2 = y;
 		}
-	} else {
-		c = e;
+	      else
+		{
+		  r1 = x;
+		  c  = y;
+		}
+	    }
 	}
-
-	/* Deal with the most obvious brokenness.  */
-	if ((r1 && !REG_P (r1)) || (r2 && !REG_P (r2)) ||
-            (c && !CONSTANT_P (c))) {
-		return (0 == 1);
+      else
+	{
+	  c = e;
 	}
+    }
+  /* Deal with the most obvious brokenness.  */
+  if ((r1 && !REG_P (r1)) || (r2 && !REG_P (r2)) || (c && !CONSTANT_P (c)))
+    return false;
 
-	/* Check that we have at least a base or a displacement.  */
-	if (!c && !r1)
-		return (0 == 1);
+  /* Check that we have at least a base or a displacement.  */
+  if (!c && !r1)
+    return false;
 
-	if (p_r1)
-		*p_r1 = r1;
-	if (p_r2)
-		*p_r2 = r2;
-	if (p_c)
-		*p_c = c;
+  if (p_r1)
+    *p_r1 = r1;
+  if (p_r2)
+    *p_r2 = r2;
+  if (p_c)
+    *p_c = c;
+  if (p_sr)
+    *p_sr = sr;
 
-	return (0 == 0);
+  return true;
 }
 
 /* Addressing Modes.  */
 /* Check an address E and optionally split it into its components.
 */
 bool
-ia16_parse_address (rtx e, rtx *p_r1, rtx *p_r2, rtx *p_c)
+ia16_parse_address (rtx e, rtx *p_r1, rtx *p_r2, rtx *p_sr, rtx *p_c,
+		    rtx *p_sr)
 {
-  if (ia16_parse_address_internal (e, p_r1, p_r2, p_c))
+  if (ia16_parse_address_internal (e, p_r1, p_r2, p_sr, p_c, p_sr))
     return true;
   if (p_r1)
     *p_r1 = NULL;
   if (p_r2)
     *p_r2 = NULL;
+  if (p_sr)
+    *p_sr = NULL;
   if (p_c)
     *p_c = NULL;
+  if (p_sr)
+    *p_sr = NULL;
   return false;
 }
 
@@ -2043,34 +2020,37 @@ ia16_addr_space_pointer_mode (addr_space_t addrspace)
     }
 }
 
-/* Determine if one named address space is a subset of another.  */
-#undef TARGET_ADDR_SPACE_SUBSET_P
-#define TARGET_ADDR_SPACE_SUBSET_P ia16_addr_space_subset_p
-static bool
-ia16_addr_space_subset_p (addr_space_t subset, addr_space_t superset)
-{
-  addr_space_t generic = POINTERS_FAR ? ADDR_SPACE_FAR : ADDR_SPACE_NEAR;
-  if (subset == ADDR_SPACE_GENERIC)
-    subset = generic;
-  if (superset == ADDR_SPACE_GENERIC)
-    superset = generic;
-  return (subset == ADDR_SPACE_NEAR || superset == ADDR_SPACE_FAR);
-}
-
 #undef TARGET_ADDR_SPACE_LEGITIMATE_ADDRESS_P
 #define TARGET_ADDR_SPACE_LEGITIMATE_ADDRESS_P \
   ia16_addr_space_legitimate_address_p
+
 static bool
-ia16_addr_space_legitimate_address_p (machine_mode mode, rtx x,
-                                      bool strict, addr_space_t as)
+
+static bool
+ia16_addr_space_legitimate_address_p (machine_mode mode, rtx x, bool strict,
+				      addr_space_t as)
 {
-  rtx r1, r2;
+  rtx r1, r2, sr;
   if (CONSTANT_P (x))
     return true;
-  if (!ia16_parse_address (x, &r1, &r2, NULL))
+  if (!ia16_parse_address (x, &r1, &r2, NULL, &sr))
     return false;
   if (r1 == NULL_RTX)
     return true;
+  int srno = -1;
+  if (sr != NULL_RTX)
+    srno = REGNO (sr);
+  bool srok = true;
+  if (srno != -1 && strict)
+    {
+      srok = false;
+      if (srno > LAST_HARD_REG && reg_renumber != 0)
+	{
+	  srno = reg_renumber[srno];
+	  if (srno < 0 || srno > LAST_HARD_REG)
+	    return false;
+	}
+    }
   int r1no = REGNO (r1);
   bool r1ok = true;
   if (strict)
@@ -2104,6 +2084,19 @@ ia16_addr_space_legitimate_address_p (machine_mode mode, rtx x,
     && (REGNO_MODE_OK_FOR_REG_BASE_P (r1no, mode) || r1ok);
 }
 
+/* Determine if one named address space is a subset of another.  */
+#undef TARGET_ADDR_SPACE_SUBSET_P
+#define TARGET_ADDR_SPACE_SUBSET_P ia16_addr_space_subset_p
+static bool
+ia16_addr_space_subset_p (addr_space_t subset, addr_space_t superset)
+{
+  addr_space_t generic = POINTERS_FAR ? ADDR_SPACE_FAR : ADDR_SPACE_NEAR;
+  if (subset == ADDR_SPACE_GENERIC)
+    subset = generic;
+  if (superset == ADDR_SPACE_GENERIC)
+    superset = generic;
+  return (subset == ADDR_SPACE_NEAR || superset == ADDR_SPACE_FAR);
+}
 
 /* Miscellaneous Parameters */
 
@@ -2119,13 +2112,7 @@ ia16_shift_truncation_mask (enum machine_mode mode)
 }
 
 #undef  REGISTER_TARGET_PRAGMAS
-#define REGISTER_TARGET_PRAGMAS	ia16_register_pragmas
-void
-ia16_register_pragmas (void)
-{
-  c_register_addr_space ("__near", default_near_pointers ? ADDR_SPACE_GENERIC : ADDR_SPACE_NEAR);
-  c_register_addr_space ("__far", default_near_pointers ? ADDR_SPACE_FAR : ADDR_SPACE_GENERIC);
-}
+#define REGISTER_TARGET_PRAGMAS ia16_register_pragmas
 
 /* The Global targetm Variable */
 
@@ -2247,23 +2234,26 @@ ia16_parse_constant (rtx x, rtx *symval, rtx *intval)
 static bool
 ia16_memory_offset_known (rtx m1, rtx m2, int *offset)
 {
-  rtx m1base, m1index, m1disp, m1sym, m1int;
-  rtx m2base, m2index, m2disp, m2sym, m2int;
+  rtx m1base, m1index, m1disp, m1sym, m1int, m1seg;
+  rtx m2base, m2index, m2disp, m2sym, m2int, m2seg;
 
-  ia16_parse_address_strict (XEXP (m1, 0), &m1base, &m1index, &m1disp);
-  ia16_parse_address_strict (XEXP (m2, 0), &m2base, &m2index, &m2disp);
+  ia16_parse_address_strict (XEXP (m1, 0), &m1base, &m1index, &m1disp, &m1seg);
+  ia16_parse_address_strict (XEXP (m2, 0), &m2base, &m2index, &m2disp, &m2seg);
+
+  if (!rtx_equal_p (m1seg, m1seg))
+    return false;
 
   if (!rtx_equal_p (m1base, m2base) || !rtx_equal_p (m1index, m2index))
-    return (false);
+    return false;
 
   ia16_parse_constant (m1disp, &m1sym, &m1int);
   ia16_parse_constant (m2disp, &m2sym, &m2int);
 
   if (!rtx_equal_p (m1sym, m2sym))
-    return (false);
+    return false;
 
   *offset = INTVAL (m1int) - INTVAL (m2int);
-  return (true);
+  return true;
 }
 
 /* Return true if memory operands M1 and M2 are suitable for a move

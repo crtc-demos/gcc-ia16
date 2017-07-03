@@ -1,3 +1,6 @@
+HeaderInclude
+config/ia16/ia16-opts.h
+
 march=any
 Target RejectNegative Var(target_arch,PROCESSOR_ANY) Init(PROCESSOR_ANY)
 -march=any  Produce code that works on any CPU, with generic tuning options (default).
